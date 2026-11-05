@@ -959,9 +959,9 @@ body:has(#tab-home:not([hidden])) .site-foot{display:none}
   #tab-home .home-credits{padding:12px 0 14px;font-size:13px}
 }
 .home-credits{grid-template-columns:2fr 1fr 1fr !important}
-.home-credits .v2{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
+.home-credits .v2{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;align-items:baseline}
 .home-credits i{font-style:normal;color:var(--muted);margin-left:4px}
-.home-credits .v2 em{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:2px}
+.home-credits .v2 em{font-style:normal;font-size:12px;color:var(--muted)}
 @media (max-width:700px){.home-credits{grid-template-columns:1fr !important}}
 .site-foot .au2{margin-left:24px}
 .home-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 48px;align-items:end;padding:56px 0 28px}
@@ -1024,6 +1024,8 @@ html[lang="zh"] .home-head h1>span,.home-head h1 small{white-space:nowrap}
 #tab-sail dialog::backdrop{background:rgba(255,255,255,.8);backdrop-filter:blur(4px)}
 #tab-sail dialog p{color:var(--muted)}
 #tab-sail main{height:calc(100dvh - 160px)}
+
+html[lang=en] .l-zh,html[lang=zh] .l-en{display:none!important}
 
 </style>
 
@@ -1189,7 +1191,7 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
         <h3>Wind · 风</h3>
         <label class="row" for="sb-ws">Gust at 1.5 m · 1.5 m 阵风 <output id="sb-wsout">6.0 m/s · I2</output></label>
         <input id="sb-ws" type="range" min="0" max="25" step="0.1" value="6">
-        <p class="note">From 13.9 m/s (I4) the bench goes SAFE by itself: every blade turns parallel to the wind, edge-on, and the load is shed (90° to the bench line for N or S wind, 0° along the street). Below that the state comes from the people (p). 阵风 ≥ 13.9 m/s (I4) 时自动进入 SAFE：叶片转到与风向平行，侧边迎风卸载（南北风 90°，沿街风 0°）；低于此值时状态由人决定 (p)。</p>
+        <p class="note"><span class="l-en">From 13.9 m/s (I4) the bench goes SAFE by itself: every blade turns parallel to the wind, edge-on, and the load is shed (90° to the bench line for N or S wind, 0° along the street). Below that the state comes from the people (p).</span><span class="l-zh">阵风 ≥ 13.9 m/s (I4) 时自动进入 SAFE：叶片转到与风向平行，侧边迎风卸载（南北风 90°，沿街风 0°）；低于此值时状态由人决定 (p)。</span></p>
         <div class="seg" role="group" aria-label="Wind from">
           <button type="button" data-w="0" aria-pressed="true">N</button><button type="button" data-w="45">NE</button><button type="button" data-w="90">E</button><button type="button" data-w="135">SE</button>
         </div>
@@ -1198,7 +1200,7 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
         </div>
         <label class="row" for="sb-wd">Wind from · 来风方向 <output id="sb-wdout">0° N</output></label>
         <input id="sb-wd" type="range" min="0" max="359" step="1" value="0">
-        <p class="note">Closed blades turn either way: +16° or 180° − 16°, whichever puts the overlaps downwind. 闭合时叶片可向两侧转动（+16° 或 180° − 16°），使搭接朝向下风。<br>The screen only shelters the share of the wind that crosses the bench, |cos(wind, bench normal)|; wind along the street gets no shelter. 屏障只能遮挡垂直于座椅的风分量；沿街风无遮挡。</p>
+        <p class="note"><span class="l-en">Closed blades turn either way: +16° or 180° − 16°, whichever puts the overlaps downwind.<br>The screen only shelters the share of the wind that crosses the bench, |cos(wind, bench normal)|; wind along the street gets no shelter.</span><span class="l-zh">闭合时叶片可向两侧转动（+16° 或 180° − 16°），使搭接朝向下风。<br>屏障只能遮挡垂直于座椅的风分量；沿街风无遮挡。</span></p>
       </div>
       <div class="sbcard">
         <h3>Now</h3>
@@ -1210,15 +1212,15 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
           <dt>turn speed</dt><dd>15°/s ×3 here</dd>
         </dl>
         <label class="row"><span><input type="checkbox" id="sb-person" checked> person for scale</span></label>
-        <p class="note">Drag to orbit, scroll to zoom. 拖动旋转，滚轮缩放。</p>
+        <p class="note"><span class="l-en">Drag to orbit, scroll to zoom.</span><span class="l-zh">拖动旋转，滚轮缩放。</span></p>
       </div>
       <div class="sbcard">
-        <h3>Wind levels · 风级 (gust at 1.5 m)</h3>
+        <h3><span class="l-en">Wind levels (gust at 1.5 m)</span><span class="l-zh">风级（1.5 m 阵风）</span></h3>
         <dl class="lvls">
           <dt>I0</dt><dd>&lt; 3.4 m/s · calm</dd><dt>I1</dt><dd>3.4–5.5 · light</dd><dt>I2</dt><dd>5.5–8.0 · noticeable</dd>
           <dt>I3</dt><dd>8.0–13.9 · strong</dd><dt>I4</dt><dd>13.9–20.8 · SAFE</dd><dt>I5</dt><dd>≥ 20.8 · SAFE, stay away</dd>
         </dl>
-        <p class="note">Demo bands of the rule book. 此为演示规则分档。</p>
+        <p class="note"><span class="l-en">Demo bands of the rule book.</span><span class="l-zh">此为演示规则分档。</span></p>
       </div>
     </aside>
   </div>
@@ -1265,7 +1267,7 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
   <div class="controls">
     <fieldset class="wide" id="fs-layout">
       <legend><span class="tag">B22</span>Benches and people on the map · 在地图上放置座椅与人</legend>
-      <p class="hint">“+ place a bench”, then click on a sidewalk in the plan: an S-bench of the design is put there, one or more. Benches are numbered in the order they are placed. Move or remove any bench in the list. The ZED camera and the paths of the people go with the active bench. Then press “place” at a person added on the Behaviour tab and click where they are: the bench within 4 m counts them at once. Esc ends placing.<br>点击“+ 放置座椅”，再点击平面图中的人行道即可放置座椅（可多个），按放置顺序编号；列表中可移动或删除。ZED 摄像头与人的路径跟随当前座椅。然后在行为页添加的人旁点击“放置”，再点击其位置：4 m 内的座椅立即计入。按 Esc 结束放置。</p>
+      <p class="hint"><span class="l-en">“+ place a bench”, then click on a sidewalk in the plan: an S-bench of the design is put there, one or more. Benches are numbered in the order they are placed. Move or remove any bench in the list. The ZED camera and the paths of the people go with the active bench. Then press “place” at a person added on the Behaviour tab and click where they are: the bench within 4 m counts them at once. Esc ends placing.</span><span class="l-zh">点击“+ 放置座椅”，再点击平面图中的人行道即可放置座椅（可多个），按放置顺序编号；列表中可移动或删除。ZED 摄像头与人的路径跟随当前座椅。然后在行为页添加的人旁点击“放置”，再点击其位置：4 m 内的座椅立即计入。按 Esc 结束放置。</span></p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <button type="button" id="lay-add" aria-pressed="false">+ place a bench</button>
         <button type="button" id="to-map">↑ back to the map · 回到地图</button>
@@ -1300,7 +1302,7 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
         <label class="f"><span class="lab">CFD: wind × (the case has one inflow speed) <output id="out-cfd_factor"></output></span><input type="range" id="in-cfd_factor" min="0.5" max="5" step="0.05"></label>
       </div>
       <p class="hint" id="cfd-info"></p>
-      <label class="f"><span class="lab">CFD file: grid-data.js of the team, or a new one · 新的 CFD 文件</span><input type="file" id="in-cfd_file" accept=".js,.json"></label>
+      <label class="f"><span class="lab"><span class="l-en">CFD file: grid-data.js of the team, or a new one</span><span class="l-zh">CFD 文件：团队的 grid-data.js 或新文件</span></span><input type="file" id="in-cfd_file" accept=".js,.json"></label>
       <p class="hint" id="cfd-msg" role="status"></p>
       <label class="chk"><input type="checkbox" id="in-cfd_map"> show the CFD field under the plan</label>
       <div class="formula" id="wind-out"></div>
@@ -1315,7 +1317,7 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
       <label class="f"><span class="lab">canopy: blade tilt along the street, deg <output id="out-tilt_along"></output></span><input type="range" id="in-tilt_along" min="-90" max="90" step="1"></label>
       </div>
       <div id="cs-sail" hidden>
-        <p class="hint">Type in what the light-sail site gives for the sail above this bench: its pose and the drop of the wind at the bench. 输入光帆网站给出的座椅上方光帆姿态与座椅点风速降低值。</p>
+        <p class="hint"><span class="l-en">Type in what the light-sail site gives for the sail above this bench: its pose and the drop of the wind at the bench.</span><span class="l-zh">输入光帆网站给出的座椅上方光帆姿态与座椅点风速降低值。</span></p>
         <div class="row4">
           <label class="f"><span class="lab">α, deg</span><input type="number" id="in-sail_alpha" step="1" aria-label="alpha: tilt along the street, deg"></label>
           <label class="f"><span class="lab">β, deg</span><input type="number" id="in-sail_beta" step="1" aria-label="beta: slope across the street, deg"></label>
@@ -1383,7 +1385,7 @@ requestAnimationFrame(tick);setTimeout(function(){loaded=true;},9000);})();
 <section id="tab-how" data-tab="how" aria-label="How it works" hidden>
   <div class="prose">
     <h2>How it works</h2>
-    <p>The Grasshopper file reads left to right. Wind comes first. People, virtual or from the ZED camera, become behaviour cues. The rule book decides for every bench, and the bench, the heat map and the Rhino layers show the result. The Model tab runs the same calculation as the Python core of the Grasshopper file; it gives the same numbers and the same panel text.</p>
+    <p>The Grasshopper file reads left to right. Wind comes first. People, virtual or from the ZED camera, become behaviour cues. The rule book decides for every bench, and the bench, the heat map and the Rhino layers show the result. The Street micro tab runs the same calculation as the Python core of the Grasshopper file; it gives the same numbers and the same panel text.</p>
   </div>
   <ol class="flow" aria-label="Data flow">
     <li><span class="n">0</span><b>WIND</b>U<sub>gust</sub> = U(1.5 m) × G × K<sub>canopy</sub> at every bench (× K<sub>site</sub> from CFD); direction, T<sub>a</sub>.</li>
@@ -2703,7 +2705,9 @@ all();
 'use strict';
 const $ = id => document.getElementById(id);
 const box = $('obsSect');
-const CLS_LABEL = {adult: 'adult', older_60_69: 'older 60–69', frail_child: 'child', frail_70plus: '70+', stroller: 'with stroller', mobility_aid: 'mobility aid'};
+const L0 = (en, zh) => '<span class="l-en">' + en + '</span><span class="l-zh">' + zh + '</span>';
+const CLS_LABEL = {adult: L0('adult', '成人'), older_60_69: L0('older 60–69', '60–69岁'), frail_child: L0('child', '儿童'), frail_70plus: L0('70+', '70岁以上'), stroller: L0('with stroller', '推婴儿车'), mobility_aid: L0('mobility aid', '助行器')};
+const ACT_L = {sit: L0('sit', '坐'), stand: L0('stand', '站')};
 function clsOf(n) {
   if (n.activity === 'stroller') return 'stroller';
   if (n.mobility === 'aid' || n.mobility === 'wheel' || n.activity === 'wheel') return 'mobility_aid';
@@ -2713,23 +2717,25 @@ function clsOf(n) {
   return 'adult';
 }
 const actOf = n => (['sit', 'sleep', 'wheel'].indexOf(n.activity) >= 0 ? 'sit' : 'stand');
+const L = (en, zh) => '<span class="l-en">' + en + '</span><span class="l-zh">' + zh + '</span>';
+const EN = () => !window.DXLANG || window.DXLANG.en();
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 box.innerHTML =
-  '<div class="card-h"><h2>Add to the Street micro tab · 添加到微观页</h2><span class="src">shared list</span></div>' +
-  '<p class="note">Set up a person above (pose, motion, clothing, group), then press the button. Only the wind and cold points go on. In the Street micro tab you place the person on the map with a click; the rule book of the bench within 4 m reacts at once. Until placed, the person waits at the lee seat of the active bench.<br>在上方设置人物后点击按钮：只传递风与冷的分值。在“微观页”页点击地图放置此人，4 m 内座椅的规则立即响应；放置前此人位于当前座椅的背风座位。</p>' +
+  '<div class="card-h"><h2>' + L('Add to the Street micro tab', '添加到微观页') + '</h2><span class="src">' + L('shared list', '共享列表') + '</span></div>' +
+  '<p class="note"><span class="l-en">Set up a person above (pose, motion, clothing, group), then press the button. Only the wind and cold points go on. In the Street micro tab you place the person on the map with a click; the rule book of the bench within 4 m reacts at once. Until placed, the person waits at the lee seat of the active bench.</span><span class="l-zh">在上方设置人物后点击按钮：只传递风与冷的分值。在微观页点击地图放置此人，4 m 内座椅的规则立即响应；放置前此人位于当前座椅的背风座位。</span></p>' +
   '<div class="obs-now" id="obs-now"></div>' +
   '<div class="fields">' +
-  '<div class="f"><label for="obs-note"><span>note (optional) · 备注</span></label><input type="text" id="obs-note" maxlength="200" placeholder="where / when it was seen"></div>' +
+  '<div class="f"><label for="obs-note"><span>' + L('note (optional)', '备注（选填）') + '</span></label><input type="text" id="obs-note" maxlength="200" placeholder="where / when it was seen"></div>' +
   '</div>' +
-  '<div class="checks"><button type="button" class="tog obs-add" id="obs-add">+ Add this person · 添加此人</button><span class="hint" id="obs-msg" role="status"></span></div>' +
-  '<div class="sublab">added so far · 已添加</div><div class="ev" id="obs-list"></div><p class="softnote" id="obs-status"></p>';
+  '<div class="checks"><button type="button" class="tog obs-add" id="obs-add">+ ' + L('Add this person', '添加此人') + '</button><span class="hint" id="obs-msg" role="status"></span></div>' +
+  '<div class="sublab">' + L('added so far', '已添加') + '</div><div class="ev" id="obs-list"></div><p class="softnote" id="obs-status"></p>';
 let busy = false;
 function nowCues() { return window.behNow ? window.behNow() : null; }
 function renderNow() {
   const n = nowCues(); if (!n) return;
   const cl = clsOf(n);
-  $('obs-now').innerHTML = '<span class="code">W ' + n.W + ' · C ' + n.C + ' · ' + actOf(n) + ' · ' + CLS_LABEL[cl] + '</span> ' +
-    (n.cues.length ? '<span class="hint">' + n.cues.map(c => esc(c.t) + ' (' + c.ax + '+' + c.n + ')').join(' · ') + '</span>' : '<span class="hint">no wind or cold cue yet</span>');
+  $('obs-now').innerHTML = '<span class="code">W ' + n.W + ' · C ' + n.C + ' · ' + ACT_L[actOf(n)] + ' · ' + CLS_LABEL[cl] + '</span> ' +
+    (n.cues.length ? '<span class="hint">' + n.cues.map(c => L(esc(c.t), esc(c.z || c.t)) + ' (' + c.ax + '+' + c.n + ')').join(' · ') + '</span>' : '<span class="hint">' + L('no wind or cold cue yet', '尚无风或冷的线索') + '</span>');
 }
 const tab = document.getElementById('tab-behaviour');
 tab.addEventListener('input', () => setTimeout(renderNow, 0));
@@ -2738,11 +2744,11 @@ document.addEventListener('pointerup', () => setTimeout(renderNow, 0));
 $('obs-add').addEventListener('click', async () => {
   if (busy) return;
   const n = nowCues(); if (!n) return;
-  if (!n.W && !n.C) { $('obs-msg').textContent = 'This person shows no wind or cold cue: nothing for the bench to react to.'; return; }
+  if (!n.W && !n.C) { $('obs-msg').textContent = (EN() ? 'This person shows no wind or cold cue: nothing for the bench to react to.' : '此人没有风或冷的线索，座椅无需响应。'); return; }
   busy = true; $('obs-add').disabled = true;
   const where = await window.DXOBS.add({act: actOf(n), cls: clsOf(n), W: n.W, C: n.C, cues: n.cues, note: $('obs-note').value});
   busy = false; $('obs-add').disabled = false; $('obs-note').value = '';
-  $('obs-msg').textContent = (where === 'shared' ? 'Added for everybody.' : 'Added in this browser.') + ' Place the person on the map in the Street micro tab.';
+  $('obs-msg').textContent = (EN() ? (where === 'shared' ? 'Added for everybody.' : 'Added in this browser.') + ' Place the person on the map in the Street micro tab.' : (where === 'shared' ? '已为所有人添加。' : '已添加到本浏览器。') + '请在微观页的地图上放置此人。');
 });
 $('obs-list').addEventListener('click', e => {
   const b = e.target.closest('button[data-k]'); if (!b) return;
@@ -2750,13 +2756,14 @@ $('obs-list').addEventListener('click', e => {
 });
 window.DXOBS.onChange((list, info) => {
   $('obs-status').textContent = info.status;
-  const where = it => it.x != null ? 'on the map (' + it.x.toFixed(1) + ', ' + it.y.toFixed(1) + ')' : (it.bench ? esc(it.bench) + ' ' + esc(it.side || 'lee') : 'not placed yet');
-  $('obs-list').innerHTML = list.length ? list.map((it, i) => '<div><span><b>+' + (i + 1) + '</b> ' + where(it) + ' · ' + esc(it.act) + ' · ' +
-    esc(CLS_LABEL[it.cls] || it.cls) + ' · W ' + it.W + ' C ' + it.C + (it.note ? ' · ' + esc(it.note) : '') + '<br><span class="p">' + it.cues.map(c => esc(c.t)).join(' · ') + '</span></span>' +
+  const where = it => it.x != null ? L('on the map (', '地图上（') + it.x.toFixed(1) + ', ' + it.y.toFixed(1) + L(')', '）') : (it.bench ? esc(it.bench) + ' ' + ((it.side || 'lee') === 'lee' ? L('lee', '背风侧') : it.side === 'windward' ? L('windward', '迎风侧') : esc(it.side)) : L('not placed yet', '尚未放置'));
+  $('obs-list').innerHTML = list.length ? list.map((it, i) => '<div><span><b>+' + (i + 1) + '</b> ' + where(it) + ' · ' + (ACT_L[it.act] || esc(it.act)) + ' · ' +
+    (CLS_LABEL[it.cls] || esc(it.cls)) + ' · W ' + it.W + ' C ' + it.C + (it.note ? ' · ' + esc(it.note) : '') + '<br><span class="p">' + it.cues.map(c => L(esc(c.t), esc(c.z || c.t))).join(' · ') + '</span></span>' +
     (window.DXOBS.canChange(it) ?'<button type="button" class="tog" data-k="' + esc(it.k) + '" data-o="' + esc(it.owner) + '" aria-label="remove">×</button>' : '') + '</div>').join('')
-    : '<div><span>nobody added yet · 暂无</span></div>';
+    : '<div><span>' + L('nobody added yet', '暂无') + '</span></div>';
 });
 renderNow();
+window.addEventListener('dxlang', renderNow);
 })();
 
 </script>
@@ -2776,36 +2783,40 @@ css.textContent = '#tab-behaviour .pose-fig{display:flex;gap:16px;align-items:ce
   '#tab-behaviour .pose-mini .jt{cursor:pointer}' +
   '#tab-behaviour .pose-mini:focus-visible{outline:2px solid var(--accent);outline-offset:2px}';
 document.head.appendChild(css);
+const L = (en, zh) => '<span class="l-en">' + en + '</span><span class="l-zh">' + zh + '</span>';
+const EN = () => !window.DXLANG || window.DXLANG.en();
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
-const AX = [['H', 'heat · 热'], ['C', 'cold · 冷'], ['W', 'wind · 风'], ['S', 'sun · 晒'], ['R', 'rain · 雨']];
+const AX = [['H', L('heat', '热')], ['C', L('cold', '冷')], ['W', L('wind', '风')], ['S', L('sun', '晒')], ['R', L('rain', '雨')]];
 const BASIS = {hyp: 'our hypothesis · 我们的假设', src: 'published source · 文献来源', obs: 'own observation · 实地观察'};
-const ACT = {sit: 'sitting', sleep: 'lying', cycle: 'cycling', ebike: 'e-bike', wheel: 'wheelchair', stand: 'standing', walk: 'walking', stroller: 'with stroller', dog: 'with a dog', jog: 'jogging'};
+
+const ACT_EN = {sit: 'sitting', sleep: 'lying', cycle: 'cycling', ebike: 'e-bike', wheel: 'wheelchair', stand: 'standing', walk: 'walking', stroller: 'with stroller', dog: 'with a dog', jog: 'jogging'};
+const ACT_ZH = {sit: '坐', sleep: '躺', cycle: '骑车', ebike: '电动车', wheel: '轮椅', stand: '站', walk: '步行', stroller: '推婴儿车', dog: '遛狗', jog: '慢跑'};
+const ACT = new Proxy({}, {get: (o, k) => (EN() ? ACT_EN : ACT_ZH)[k]});
 box.innerHTML =
-  '<div class="card-h"><h2>Add a new pose · 添加新姿态</h2><span class="src">shared list</span></div>' +
-  '<p class="note">For a pose that is not in the list yet. 1) In the Posture card above, choose the view and the activity and drag the joints into the pose. 2) Describe it below and give its points. 3) Save: it becomes a pose button and a row of the rule table for everybody, and the figure is recognised when every joint is within 20 px (about 10 cm) of the saved one. Only wind (W) and cold (C) points go on to the Street micro tab.<br>' +
-  '1) 在上方“姿态”卡中选择视角与活动，拖动关节摆出姿态；2) 在下方描述并给分；3) 保存后，所有人都会看到新的姿态按钮和规则表行；人体每个关节与保存的姿态相差不超过 20 px（约 10 cm）即识别。只有风 (W) 与冷 (C) 分值进入微观页。</p>' +
+  '<div class="card-h"><h2>' + L('Add a new pose', '添加新姿态') + '</h2><span class="src">' + L('shared list', '共享列表') + '</span></div>' +
+  '<p class="note"><span class="l-en">For a pose that is not in the list yet. 1) In the Posture card above, choose the view and the activity and drag the joints into the pose. 2) Describe it below and give its points. 3) Save: it becomes a pose button and a row of the rule table for everybody, and the figure is recognised when every joint is within 20 px (about 10 cm) of the saved one. Only wind (W) and cold (C) points go on to the Street micro tab.</span><span class="l-zh">用于列表中还没有的姿态。1) 在上方“姿态”卡中选择视角与活动，拖动关节摆出姿态；2) 在下方描述并给分；3) 保存后，所有人都会看到新的姿态按钮和规则表行；人体每个关节与保存的姿态相差不超过 20 px（约 10 cm）即识别。只有风 (W) 与冷 (C) 分值进入微观页。</span></p>' +
   '<div class="pose-fig"><div class="skel pose-mini" id="pose-mini" role="button" tabindex="0" title="change the figure in the Posture card"></div>' +
-  '<div><div class="sublab">this figure will be saved · 将保存此人形</div><div class="obs-now" id="pose-now"></div>' +
-  '<p class="softnote">It is a copy of the figure in the Posture card. To change it, drag the joints there. ' +
-  '<button type="button" class="tog" id="pose-go">↑ go to the Posture card · 去姿态卡</button></p></div></div>' +
+  '<div><div class="sublab">' + L('this figure will be saved', '将保存此人形') + '</div><div class="obs-now" id="pose-now"></div>' +
+  '<p class="softnote">' + L('It is a copy of the figure in the Posture card. To change it, drag the joints there. ', '这是“姿态”卡中人形的副本，请在那里拖动关节修改。') +
+  '<button type="button" class="tog" id="pose-go">↑ ' + L('go to the Posture card', '去姿态卡') + '</button></p></div></div>' +
   '<div class="fields">' +
-  '<div class="f"><label for="pose-en"><span>name, English · 英文名称</span></label><input type="text" id="pose-en" maxlength="90" placeholder="e.g. both hands pull the hood down"></div>' +
-  '<div class="f"><label for="pose-zh"><span>name, 中文 (optional)</span></label><input type="text" id="pose-zh" maxlength="60" placeholder="例如：双手拉低兜帽"></div>' +
-  '<div class="f" style="grid-column:1/-1"><label for="pose-seen"><span>what the camera sees · 摄像头看到的 (optional)</span></label><input type="text" id="pose-seen" maxlength="300" placeholder="e.g. both wrists at the neck, elbows close to the chest, for 2 s or more"></div>' +
-  '<p class="softnote" style="grid-column:1/-1">The key joints in plain words, as the camera would see them: which joints, where they are against the body, and for how long. It is shown in the rule table so that others can check the pose. Recognition itself uses the saved figure. · 用文字写出摄像头能看到的关键关节：哪些关节、相对身体的位置、持续多久。此说明显示在规则表中；识别本身使用保存的人形。</p>' +
+  '<div class="f"><label for="pose-en"><span>' + L('name, English', '英文名称') + '</span></label><input type="text" id="pose-en" maxlength="90" placeholder="e.g. both hands pull the hood down"></div>' +
+  '<div class="f"><label for="pose-zh"><span>' + L('name in Chinese (optional)', '中文名称（选填）') + '</span></label><input type="text" id="pose-zh" maxlength="60" placeholder="例如：双手拉低兜帽"></div>' +
+  '<div class="f" style="grid-column:1/-1"><label for="pose-seen"><span>' + L('what the camera sees (optional)', '摄像头看到的（选填）') + '</span></label><input type="text" id="pose-seen" maxlength="300" placeholder="e.g. both wrists at the neck, elbows close to the chest, for 2 s or more"></div>' +
+  '<p class="softnote" style="grid-column:1/-1"><span class="l-en">The key joints in plain words, as the camera would see them: which joints, where they are against the body, and for how long. It is shown in the rule table so that others can check the pose. Recognition itself uses the saved figure.</span><span class="l-zh">用文字写出摄像头能看到的关键关节：哪些关节、相对身体的位置、持续多久。此说明显示在规则表中；识别本身使用保存的人形。</span></p>' +
   '</div>' +
-  '<div class="sublab">points it adds, 0–3 per axis · 每个维度加分 0–3</div>' +
+  '<div class="sublab">' + L('points it adds, 0–3 per axis', '每个维度加分 0–3') + '</div>' +
   '<div class="fields pose-ax">' + AX.map(a => '<div class="f"><label for="pose-a' + a[0] + '"><span>' + a[1] + '</span></label><select id="pose-a' + a[0] + '">' + [0, 1, 2, 3].map(n => '<option>' + n + '</option>').join('') + '</select></div>').join('') + '</div>' +
   '<div class="fields">' +
-  '<div class="f"><label for="pose-basis"><span>basis · 依据</span></label><select id="pose-basis">' + Object.keys(BASIS).map(k => '<option value="' + k + '">' + BASIS[k] + '</option>').join('') + '</select></div>' +
-  '<div class="f"><label for="pose-src"><span>where the information comes from · 信息来源</span></label><input type="text" id="pose-src" maxlength="300" placeholder="link, paper, or place and date of the observation"></div>' +
+  '<div class="f"><label for="pose-basis"><span>' + L('basis', '依据') + '</span></label><select id="pose-basis">' + Object.keys(BASIS).map(k => '<option value="' + k + '">' + BASIS[k] + '</option>').join('') + '</select></div>' +
+  '<div class="f"><label for="pose-src"><span>' + L('where the information comes from', '信息来源') + '</span></label><input type="text" id="pose-src" maxlength="300" placeholder="link, paper, or place and date of the observation"></div>' +
   '</div>' +
-  '<div class="checks"><button type="button" class="tog obs-add" id="pose-save">+ Save this pose · 保存姿态</button><span class="hint" id="pose-msg" role="status"></span></div>' +
-  '<div class="sublab">poses added so far · 已添加的姿态</div><div class="ev" id="pose-list"></div><p class="softnote" id="pose-status"></p>';
+  '<div class="checks"><button type="button" class="tog obs-add" id="pose-save">+ ' + L('Save this pose', '保存姿态') + '</button><span class="hint" id="pose-msg" role="status"></span></div>' +
+  '<div class="sublab">' + L('poses added so far', '已添加的姿态') + '</div><div class="ev" id="pose-list"></div><p class="softnote" id="pose-status"></p>';
 function renderMini() {
   const sv = $('skel'), m = $('pose-mini'); if (!sv || !m) return;
   const c = sv.cloneNode(true);
-  c.removeAttribute('id'); c.setAttribute('aria-label', 'copy of the Posture figure');
+  c.removeAttribute('id'); c.setAttribute('aria-label', EN() ? 'copy of the Posture figure' : '姿态人形副本');
   c.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
   c.querySelectorAll('.hit').forEach(e => e.remove());
   m.replaceChildren(c);
@@ -2822,8 +2833,8 @@ document.addEventListener('pointermove', e => { if (!e.buttons || raf) return; r
 function renderNow() {
   renderMini();
   const f = window.behPoseNow ? window.behPoseNow() : null; if (!f) return;
-  $('pose-now').innerHTML = '<span class="code">figure now: ' + (f.view === 'side' ? 'side view' : 'front view') + ' · ' + esc(ACT[f.activity] || f.activity) + '</span>' +
-    (f.match.length ? ' <span class="hint">recognised added poses: ' + f.match.map(esc).join(' · ') + '</span>' : '');
+  $('pose-now').innerHTML = '<span class="code">' + (EN() ? 'figure now: ' + (f.view === 'side' ? 'side view' : 'front view') : '当前人形：' + (f.view === 'side' ? '侧视' : '正视')) + ' · ' + esc(ACT[f.activity] || f.activity) + '</span>' +
+    (f.match.length ? ' <span class="hint">' + (EN() ? 'recognised added poses: ' : '识别到的新增姿态：') + f.match.map(esc).join(' · ') + '</span>' : '');
 }
 const tab = document.getElementById('tab-behaviour');
 tab.addEventListener('input', () => setTimeout(renderNow, 0));
@@ -2834,15 +2845,15 @@ $('pose-save').addEventListener('click', async () => {
   if (busy) return;
   const en = $('pose-en').value.trim(), a = {};
   AX.forEach(x => { const v = +$('pose-a' + x[0]).value; if (v) a[x[0]] = v; });
-  if (!en) { $('pose-msg').textContent = 'Give the pose a name first.'; $('pose-en').focus(); return; }
-  if (!Object.keys(a).length) { $('pose-msg').textContent = 'Give at least one axis 1–3 points.'; return; }
+  if (!en) { $('pose-msg').textContent = (EN() ? 'Give the pose a name first.' : '请先填写姿态名称。'); $('pose-en').focus(); return; }
+  if (!Object.keys(a).length) { $('pose-msg').textContent = (EN() ? 'Give at least one axis 1–3 points.' : '至少给一个维度 1–3 分。'); return; }
   const f = window.behPoseNow();
   busy = true; $('pose-save').disabled = true;
   const where = await window.DXPOSES.add({en: en, zh: $('pose-zh').value.trim(), seen: $('pose-seen').value.trim(), a: a, view: f.view, activity: f.activity, J: f.J,
     src: $('pose-src').value.trim(), basis: $('pose-basis').value});
   busy = false; $('pose-save').disabled = false;
   ['pose-en', 'pose-zh', 'pose-seen', 'pose-src'].forEach(id => { $(id).value = ''; }); AX.forEach(x => { $('pose-a' + x[0]).value = '0'; });
-  $('pose-msg').textContent = where === 'shared' ? 'Saved for everybody: see the pose buttons and the rule table.' : 'Saved in this browser: see the pose buttons and the rule table.';
+  $('pose-msg').textContent = EN() ? (where === 'shared' ? 'Saved for everybody: see the pose buttons and the rule table.' : 'Saved in this browser: see the pose buttons and the rule table.') : (where === 'shared' ? '已为所有人保存：见姿态按钮与规则表。' : '已保存在本浏览器：见姿态按钮与规则表。');
 });
 $('pose-list').addEventListener('click', e => {
   const b = e.target.closest('button[data-k]'); if (!b) return;
@@ -2855,13 +2866,14 @@ window.DXPOSES.onChange((list, info) => {
   if (window.behPoses) window.behPoses(list);
   $('pose-status').textContent = info.status;
   $('pose-list').innerHTML = list.length ? list.map(it => '<div><span><b>' + esc(it.en) + '</b>' + (it.zh ? ' · ' + esc(it.zh) : '') + ' · ' + pts(it.a) + ' · ' +
-      (it.view === 'side' ? 'side' : 'front') + ', ' + esc(ACT[it.activity] || it.activity) + '<br><span class="p">' + (it.seen ? esc(it.seen) + ' · ' : '') + esc(BASIS[it.basis] || '') +
-      (it.src ? ': ' + esc(it.src) : '') + '</span></span><span style="display:flex;gap:6px;align-self:center"><button type="button" class="tog" data-act="use" data-k="' + esc(it.k) + '" data-o="' + esc(it.owner) + '">use</button>' +
+      (it.view === 'side' ? L('side', '侧视') : L('front', '正视')) + ', ' + (ACT_EN[it.activity] ? L(ACT_EN[it.activity], ACT_ZH[it.activity]) : esc(it.activity)) + '<br><span class="p">' + (it.seen ? esc(it.seen) + ' · ' : '') + (BASIS[it.basis] ? L(BASIS[it.basis].split(' · ')[0], BASIS[it.basis].split(' · ')[1]) : '') +
+      (it.src ? ': ' + esc(it.src) : '') + '</span></span><span style="display:flex;gap:6px;align-self:center"><button type="button" class="tog" data-act="use" data-k="' + esc(it.k) + '" data-o="' + esc(it.owner) + '">' + L('use', '使用') + '</button>' +
       (window.DXPOSES.canChange(it) ? '<button type="button" class="tog" data-k="' + esc(it.k) + '" data-o="' + esc(it.owner) + '" aria-label="remove">×</button>' : '') + '</span></div>').join('')
-    : '<div><span>no poses added yet · 暂无</span></div>';
+    : '<div><span>' + L('no poses added yet', '暂无') + '</span></div>';
   renderNow();
 });
 renderNow();
+window.addEventListener('dxlang', renderNow);
 })();
 
 </script>
@@ -5006,14 +5018,19 @@ function ksiteFromCfd() {                      // K_site = U_CFD(bench) / U_CFD(
     const el = $('ks-' + s.id); if (el) el.value = cfg.k_site[s.id];
   });
 }
+function dxEN() { return !window.DXLANG || window.DXLANG.en(); }
 function cfdInfo() {
   const C = E.CFD;
-  if (!C) { $('cfd-info').textContent = 'No CFD loaded: K_site is typed in. 未加载 CFD。'; return; }
+  if (!C) { $('cfd-info').textContent = (dxEN() ? 'No CFD loaded: K_site is typed in.' : '未加载 CFD：K_site 为手动输入。'); return; }
   const a = siteOf(cfg.bench) || E.SITES[0], ua = E.cfdSample(a.x, a.y, 1.0);
-  $('cfd-info').textContent = 'CFD ' + C.name + ' · case ' + C.case + ' · ' + C.n + ' cells of 1 m at 1.5 m · wind from ' + F(C.wind_from, 0) + '° (' + C.from_how + ')' +
+  $('cfd-info').textContent = dxEN() ? 'CFD ' + C.name + ' · case ' + C.case + ' · ' + C.n + ' cells of 1 m at 1.5 m · wind from ' + F(C.wind_from, 0) + '° (' + C.from_how + ')' +
     (C.ok ? '' : ' · preliminary: solver not converged / site not calibrated') + ' · U at ' + a.id + ' ' + (ua ? F(ua.speed, 2) + ' m/s' : 'outside the grid') +
-    '. The case has no reference speed, so “wind ×” scales it. 该工况无参考风速，用“风速倍数”缩放。';
+    '. The case has no reference speed, so “wind ×” scales it.'
+    : 'CFD ' + C.name + ' · 工况 ' + C.case + ' · ' + C.n + ' 个 1 m 网格，高度 1.5 m · 来风 ' + F(C.wind_from, 0) + '°' +
+    (C.ok ? '' : ' · 初步结果：求解未收敛 / 场地未校准') + ' · ' + a.id + ' 处风速 ' + (ua ? F(ua.speed, 2) + ' m/s' : '在网格外') +
+    '。该工况无参考风速，用“风速倍数”缩放。';
 }
+window.addEventListener('dxlang', () => { try { cfdInfo(); } catch (e) {} });
 function parseCfd(text, name) {               // window.DaxueGridSnapshot = {...} (or the plain JSON) -> the compact form of the page
   const a = text.indexOf('{'), b = text.lastIndexOf('}');
   if (a < 0 || b <= a) throw new Error('no { … } in the file');
@@ -5037,7 +5054,7 @@ window.dxLoadCfd = function (text, name, from) {
     d = parseCfd(text, name);
     full = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
   } catch (err) {
-    const m = 'Could not read ' + name + ': ' + err.message + '. Expected grid-data.js of the team (rows with p and v). 无法读取。';
+    const m = dxEN() ? 'Could not read ' + name + ': ' + err.message + '. Expected grid-data.js of the team (rows with p and v).' : '无法读取 ' + name + '：' + err.message + '。需要团队的 grid-data.js（含 p 与 v 的行）。';
     $('cfd-msg').textContent = m; return {ok: false, msg: m};
   }
   const keep = DATA.cfd;
@@ -5045,8 +5062,9 @@ window.dxLoadCfd = function (text, name, from) {
   try { relayout(window.DXLAYOUT ? window.DXLAYOUT.get() : null); }
   catch (err) { DATA.cfd = keep; relayout(window.DXLAYOUT ? window.DXLAYOUT.get() : null); const m = 'Could not use ' + name + ': ' + err.message; $('cfd-msg').textContent = m; return {ok: false, msg: m}; }
   let macro = '';
-  if (window.DXMACRO) { const r = window.DXMACRO.setGrid(full); macro = r.ok ? ' The Street macro tab recalculated too.' : ' Street macro tab: ' + r.msg; }
-  const m = name + ' loaded (' + (d.r.length / 5) + ' cells) and the Street micro tab recalculated.' + macro + ' It stays in this browser only; reload the page to go back to grid-data.js. 已载入并重新计算（所有页面），仅限本浏览器。';
+  if (window.DXMACRO) { const r = window.DXMACRO.setGrid(full); macro = r.ok ? (dxEN() ? ' The Street macro tab recalculated too.' : '宏观页也已重新计算。') : (dxEN() ? ' Street macro tab: ' : '宏观页：') + r.msg; }
+  const m = dxEN() ? name + ' loaded (' + (d.r.length / 5) + ' cells) and the Street micro tab recalculated.' + macro + ' It stays in this browser only; reload the page to go back to grid-data.js.'
+    : '已载入 ' + name + '（' + (d.r.length / 5) + ' 个网格），微观页已重新计算。' + macro + '仅限本浏览器；刷新页面恢复 grid-data.js。';
   $('cfd-msg').textContent = m; if (window.DXMACRO && window.DXMACRO.cfdMsg) window.DXMACRO.cfdMsg(m);
   return {ok: true, msg: m};
 };
@@ -7177,6 +7195,504 @@ const file=location.protocol!=='http:',connected=bridge.connected&&bridge.doc,re
 
 </script>
 <script>
+// zh_ours.js - Chinese for the parts of our own tabs that are written in English only (S-bench model, Street micro, How it works,
+// our cards and notes on the Behaviour tab). lang.js uses it in 中文 mode: a whole text node, attribute or " · " segment is replaced,
+// never single words inside an English sentence, so no line comes out half translated. Paper references, the evidence values of the
+// behaviour study and the Grasshopper panel / log text stay in English (they are the same text as in the papers and in GH).
+window.DX_ENZH = (function () {
+  const X = {
+// ---------- mast, home
+"at every bench (× K": "各座椅处（× K",
+"from CFD); direction, T": "来自 CFD）；风向、T",
+"Gust at 1.5 m from demo presets, the 15-minute climate scenario, live weather, manual input or the canopy file. The canopy moves three ways (curtain, tilt across, tilt along), folded into one factor K": "1.5 m 阵风来自演示预设、15 分钟气候情景、实时天气、手动输入或顶棚文件。顶棚有三种动作（帘幕、跨街倾角、沿街倾角），合并为一个系数 K",
+"= 1 − ΔU / U₀ typed in from the light-sail site (sail pose α, β, λ). K": "= 1 − ΔU / U₀，由光帆网站手动输入（光帆姿态 α、β、λ）。K",
+"per bench = U": "（各座椅）= U",
+"(bench) / U": "（座椅）/ U",
+"(active bench), the mean wind at 1.5 m of the team CFD (grid-data.js; a new file can be loaded on the page), or a measurement. With the wind source “team CFD” the CFD wind is used at every bench directly: U": "（当前座椅），取团队 CFD 的 1.5 m 平均风速（grid-data.js；可在页面上载入新文件），或实测值。风源为“团队 CFD”时，各座椅直接使用 CFD 风速：U",
+"× wind factor × G × K": "× 风速倍数 × G × K",
+". Benches can be placed with a click on the plan (B22: a bench of the design moved to that point), and people added on the Behaviour tab placed next to them.": "。可在平面上点击放置座椅（B22：把设计座椅移到该点），并把行为页添加的人放在座椅旁。",
+"(canopy model)": "（顶棚模型）","1.0–0.3, or K": "1.0–0.3，或 K",
+"or": "或",
+"ok": "舒适",
+"SOUTH": "南", "NORTH": "北",
+"m/s across the bench at 1.5 m": "1.5 m 处垂直于座椅的风速 m/s","Sections": "栏目",
+"Plan of Daxue Road: street edge, wind at 1.5 m, light sail units and benches": "大学路平面：街道边界、1.5 m 风场、光帆单元与座椅",
+"Language": "语言",
+"Language · 语言": "语言",
+// ---------- light sail eyebrows
+"LIGHT SAIL": "光帆",
+"KINETIC LIGHT SAIL": "可动光帆",
+"CONFIGURATION": "参数配置",
+// ---------- S-bench model
+"S-bench model": "S形座椅模型",
+"3D model loads when the tab opens…": "打开本页时加载三维模型…",
+"Plan": "平面",
+"South": "南",
+"East": "东",
+"North": "北",
+"West": "西",
+"gust ≥ I4 · along the wind": "阵风 ≥ I4 · 顺风",
+"Now": "当前",
+"blade angle": "叶片角",
+"target": "目标",
+"wind level": "风级",
+"wind across the bench": "垂直于座椅的风",
+"turn speed": "转速",
+"person for scale": "人体比例参照",
+"< 3.4 m/s · calm": "< 3.4 m/s · 静风",
+"3.4–5.5 · light": "3.4–5.5 · 轻",
+"5.5–8.0 · noticeable": "5.5–8.0 · 明显",
+"8.0–13.9 · strong": "8.0–13.9 · 强",
+"13.9–20.8 · very strong, SAFE": "13.9–20.8 · 很强，SAFE",
+"≥ 20.8 · SAFE, stay away": "≥ 20.8 · SAFE，远离",
+"View": "视图",
+"State": "状态",
+"Wind from": "来风方向",
+"Elevation": "立面",
+"Perspective": "透视",
+// ---------- Street micro: playback and plan
+"Pause": "暂停",
+"Play": "播放",
+"Restart": "重新开始",
+"speed": "速度",
+"loop": "循环",
+"agent s": "智能体 s",
+"gust at 1.5 m, m/s": "1.5 m 阵风，m/s",
+"skeleton colour = how the person feels": "骨架颜色 = 人的感受",
+"mild": "轻微",
+"wind": "风",
+"cold": "冷",
+"comfortable": "舒适",
+"small dots = position fixed every 0.5 m · dashed = paths · circle = 4 m zone · blue wedge = ZED · diamond + n = person added on the Behaviour tab":
+  "小点 = 每 0.5 m 记录一次位置 · 虚线 = 路径 · 圆 = 4 m 范围 · 蓝色扇形 = ZED · 菱形 + 编号 = 行为页添加的人",
+"Playback speed": "播放速度",
+"Plan of Daxue Road: benches, wind heat map, people and their paths": "大学路平面：座椅、风速热图、人与路径",
+"Time": "时间",
+"Wind heat map scale": "风速热图图例",
+"Decision": "决策",
+"Section through the selected bench": "所选座椅剖面",
+"Controller log": "控制记录",
+// ---------- decision card
+"Rule book, every bench": "规则手册：每张座椅",
+"bench": "座椅",
+"gust": "阵风",
+"state": "状态",
+"rule": "规则",
+"mode": "模式",
+"quorum": "法定人数",
+"blades": "叶片",
+"feels like": "体感温度",
+"age": "年龄",
+"act": "活动",
+"dist": "距离",
+"side": "侧",
+"reach": "可达",
+"dwell": "停留",
+"expose": "暴露",
+"pace": "步速",
+"personal": "个人",
+"collective": "群体",
+"winner: – (nobody asks for shelter now)": "优先：–（目前无人需要遮挡）",
+"s_eff: –": "s_eff：–",
+"I4 or more: SAFE, blades edge-on, weights ignored": "I4 及以上：SAFE，叶片侧边迎风，不计权重",
+"a seated party wins": "坐着的一组优先",
+"a standing party wins": "站着的一组优先",
+"a walking party wins": "步行的一组优先",
+"the winner is below the HALF threshold: open": "优先者低于半开阈值：打开",
+"nobody in the 4 m zone: hold": "4 m 范围内无人：保持",
+"no quorum and nobody seated: no bench rule acts": "未达法定人数且无人就座：不执行座椅规则",
+"the winner is on the windward side, out of the screen’s reach: blades hold": "优先者在迎风侧，屏障够不到：叶片保持",
+"collective mode: the share of discomfort decides": "群体模式：由不适者比例决定",
+"camera down: the wind sensor alone decides": "摄像头离线：仅由风速仪决定",
+"nobody in the zone: hold (C6, X5)": "范围内无人：保持（C6、X5）",
+"C2 not judged: other people / activity than in the last round": "C2 不判断：人或活动与上一轮不同",
+"round: no data, hold (X5)": "本轮无数据：保持（X5）",
+"H0: safe at once": "H0：立即进入安全状态",
+// ---------- bench layout
+"+ place a bench": "+ 放置座椅",
+"active": "当前",
+"move": "移动",
+"place": "放置",
+"nobody added yet: add people on the Behaviour tab": "暂无：请在行为页添加人物",
+"nobody added yet": "暂无",
+"This browser only: open the page on claude.ai to share the bench layout.": "仅限本浏览器：在 claude.ai 打开本页即可共享座椅布置。",
+"This browser only: open the page on claude.ai to share the list of poses.": "仅限本浏览器：在 claude.ai 打开本页即可共享姿态列表。",
+"This browser only: open the page on claude.ai to share the list of people.": "仅限本浏览器：在 claude.ai 打开本页即可共享人物列表。",
+"Shared with everybody who opens this page.": "与所有打开本页的人共享。",
+// ---------- demo scenario
+"Demo scenario": "演示情景",
+"demo scenario": "演示情景",
+"calm day: two friends sit down": "平稳冬日：两位朋友坐下",
+"monsoon gusts: passers-by": "季风阵风：路人经过",
+"gusts + a frail 70+ walker": "阵风 + 一位 70 岁以上体弱行人",
+"cold-air outbreak -> SAFE": "寒潮 → SAFE",
+"south wind: the other pocket": "南风：另一侧座位",
+"people crossing the sidewalk": "横穿人行道的人",
+"east wind along the street": "沿街东风",
+"gusts with the canopy closed": "顶棚关闭时的阵风",
+"apply scenario": "应用情景",
+"Writes wind, canopy and people into the controls below, like the button in Grasshopper.": "把风、顶棚与人写入下面的控件，与 Grasshopper 中的按钮相同。",
+"Calm winter day (I1). Two friends walk in, sit in the lee pocket and get cold: the bench closes step by step.": "平稳冬日（I1）。两位朋友走来，坐在背风座位上并感到冷：座椅逐步闭合。",
+"view": "视图",
+"south row (B3 B1 B2)": "南排（B3 B1 B2）",
+"both rows": "两排",
+"close-up of the bench": "座椅近景",
+// ---------- wind
+"Wind": "风",
+"wind source": "风源",
+"manual": "手动",
+"team CFD: mean wind at 1.5 m at every bench": "团队 CFD：各座椅 1.5 m 平均风速",
+"scenario (15 min, 04-climate)": "情景（15 分钟，04-climate）",
+"demo: calm winter day (I1, N)": "演示：平稳冬日（I1，北风）",
+"demo: monsoon gusts (I3, NNW)": "演示：季风阵风（I3，北北西）",
+"demo: cold-air outbreak (I4)": "演示：寒潮（I4）",
+"demo: south wind (I2)": "演示：南风（I2）",
+"demo: oblique NE gusts (I3)": "演示：东北斜向阵风（I3）",
+"demo: east wind along the street": "演示：沿街东风",
+"live weather (Open-Meteo)": "实时天气（Open-Meteo）",
+"canopy file (wind_contract.csv)": "顶棚文件（wind_contract.csv）",
+"manual: wind at 10 m, m/s": "手动：10 m 风速，m/s",
+"gust factor G (gust / mean)": "阵风系数 G（阵风 / 平均）",
+"manual: wind from, deg (0 = N)": "手动：来风方向，度（0 = 北）",
+"air temperature Ta, C": "气温 Ta，°C",
+"alpha 10 m → 1.5 m (urban 0.3–0.4)": "alpha 10 m → 1.5 m（城市 0.3–0.4）",
+"show the CFD field under the plan": "在平面下显示 CFD 风场",
+"wind ×": "风速 ×",
+"wind factor": "风速倍数",
+// ---------- canopy / light sails / site
+"Canopy / light sails and site": "顶棚 / 光帆与场地",
+"source of K_canopy": "K_canopy 来源",
+"canopy model: curtain + blade tilts": "顶棚模型：帘幕 + 叶片倾角",
+"light sails: values typed in (light-sail site)": "光帆：手动输入数值（光帆网站）",
+"canopy: curtain drawn 0–1": "顶棚：帘幕展开 0–1",
+"canopy: blade tilt across the street, deg": "顶棚：跨街叶片倾角，度",
+"canopy: blade tilt along the street, deg": "顶棚：沿街叶片倾角，度",
+"K_site per bench": "各座椅 K_site",
+"from the team CFD: U(bench) / U(active bench), 1.5 m": "来自团队 CFD：U（座椅）/ U（当前座椅），1.5 m",
+"typed in": "手动输入",
+"alpha: tilt along the street, deg": "alpha：沿街倾转，度",
+"beta: slope across the street, deg": "beta：跨街调坡，度",
+"lambda: share of the cloth unrolled": "lambda：膜面展开比例",
+"U0: wind at the bench without the sail, m/s": "U0：无光帆时座椅点风速，m/s",
+"delta U, m/s": "ΔU，m/s",
+// ---------- rule book controls
+"Rule book": "规则手册",
+"sensitivity s (0 = HTML levels)": "灵敏度 s（0 = HTML 分级）",
+"quorum (min people)": "法定人数（最少人数）",
+"street mode (canopy model)": "街道模式（顶棚模型）",
+"normal": "正常",
+"relax": "放松",
+"protect": "保护",
+"safe": "安全",
+"heat map cell, m": "热图网格，m",
+"camera ok (off = wind sensor alone, X4)": "摄像头正常（关闭 = 仅风速仪，X4）",
+"heat map": "热图",
+"drizzle (rain cues count, B2)": "小雨（计入雨的线索，B2）",
+// ---------- people
+"People and agent walk": "人与智能体行走",
+"B1 · south row, in front of ZED": "B1 · 南排，ZED 前方",
+"B2 · south row, east": "B2 · 南排，东侧",
+"B3 · south row, west": "B3 · 南排，西侧",
+"B4 · north row, opposite": "B4 · 北排，对面",
+"sit down": "坐下",
+"auto (by the wind)": "自动（依风况）",
+"always": "总是",
+"never": "从不",
+"seated pose": "坐姿",
+"7 · seated, cold": "7 · 坐着，冷",
+"8 · seated, very cold": "8 · 坐着，很冷",
+"9 · seated, comfortable": "9 · 坐着，舒适",
+"person 1 sits in": "人物 1 坐在",
+"lee pocket": "背风座位",
+"windward pocket": "迎风座位",
+"seconds on the bench": "在座椅上停留秒数",
+"demo behaviour": "演示行为",
+"class": "类别",
+"speed m/s": "速度 m/s",
+"start s": "开始 s",
+"offset m": "偏移 m",
+"path": "路径",
+"1 · calm walk": "1 · 平静步行",
+"2 · walking into a gust": "2 · 迎着阵风走",
+"3 · fighting the wind": "3 · 顶风前行",
+"4 · holding the hood": "4 · 按住兜帽",
+"5 · waiting with the back to the wind, hunched, hands in pockets": "5 · 背风等待，缩身，双手插兜",
+"6 · waiting, stamping, arms crossed": "6 · 等待，跺脚，双臂交叉",
+"7 · sitting, cold": "7 · 坐着，冷",
+"10 · walking, holding the open jacket closed": "10 · 步行，攥紧敞开的外套",
+"adult": "成人",
+"older 60–69": "60–69岁",
+"child (frail)": "儿童（脆弱）",
+"frail 70+": "70岁以上（脆弱）",
+"with stroller": "推婴儿车",
+"mobility aid": "助行器",
+"demo's own": "演示自带",
+"demo’s own": "演示自带",
+"slow 0.6": "慢 0.6",
+"normal 1.0": "正常 1.0",
+"fast 1.5": "快 1.5",
+"0 · like person 1": "0 · 同人物 1",
+"+ person": "+ 人物",
+"demo": "演示",
+"person 1 demo": "人物 1 演示",
+"person 1 class": "人物 1 类别",
+"person 1 pace": "人物 1 步速",
+"person 1 path": "人物 1 路径",
+"Row 1 = person 1 (pace: demo’s own / slow / normal / fast). Other rows: demo 0 = like person 1, speed empty = the demo’s own, start < 0 = walks ahead, offset 0.7 = abreast, path “-” = the path of person 1.":
+  "第 1 行 = 人物 1（步速：演示自带 / 慢 / 正常 / 快）。其他行：演示 0 = 同人物 1，速度留空 = 演示自带，开始 < 0 = 走在前面，偏移 0.7 = 并排，路径“-” = 人物 1 的路径。",
+"Paths at B1: w = along the sidewalk, westbound · e = along the sidewalk, eastbound, 1 m further out · x = ACROSS: from the shops to the kerb (perpendicular to the bench) · y = ACROSS: from the kerb to the shops (perpendicular) · d = diagonal across the sidewalk · b = from the shops straight to the bench · r = ACROSS from the ROAD side: crosses the street, passes the bench on its road side, on to the shops · k = from the road side (kerb) straight to the bench":
+  "B1 的路径：w = 沿人行道向西 · e = 沿人行道向东，外移 1 m · x = 横穿：从店铺到路缘（垂直于座椅）· y = 横穿：从路缘到店铺（垂直）· d = 斜穿人行道 · b = 从店铺直接走向座椅 · r = 从车行道一侧横穿：过街，经过座椅靠路一侧，走向店铺 · k = 从车行道一侧（路缘）直接走向座椅",
+// ---------- block panels (titles only; the panel text is the GH text)
+"Block panels": "运算块面板",
+"The text the Grasshopper panels print at this moment, produced by the same calculation.": "Grasshopper 面板此刻输出的文字，由同一计算生成（保留英文原文）。",
+"wind at every bench": "各座椅风况",
+"people / agent now": "当前人物 / 智能体",
+"people and their cues": "人物及其线索",
+"decision per bench": "各座椅决策",
+"weights per person (Q = P × ω)": "每人权重（Q = P × ω）",
+"benches, people, wind, canopy, rule book": "座椅、人物、风、顶棚、规则手册",
+"↓ settings · 参数": "↓ 参数",
+// ---------- How it works
+"How it works": "原理",
+"The Grasshopper file reads left to right. Wind comes first. People, virtual or from the ZED camera, become behaviour cues. The rule book decides for every bench, and the bench, the heat map and the Rhino layers show the result. The Street micro tab runs the same calculation as the Python core of the Grasshopper file; it gives the same numbers and the same panel text.":
+  "Grasshopper 文件从左到右阅读。先是风；虚拟人物或 ZED 摄像头中的人转化为行为线索；规则手册为每张座椅作出决策，座椅、热图与 Rhino 图层显示结果。微观页运行与 Grasshopper 文件 Python 核心相同的计算，得到相同的数值与面板文字。",
+"WIND": "风",
+"PEOPLE / AGENT": "人 / 智能体",
+"virtual people on ready paths": "沿预设路径行走的虚拟人物",
+"CAMERA": "摄像头",
+"ZED BODY_34 skeletons, recording or live": "ZED BODY_34 骨架，录像或实时",
+"BEHAVIOUR": "行为",
+"moving yes/no, sit/stand, pace; W and C cue points; parties": "是否移动、坐/站、步速；风 W 与冷 C 线索分；同行组",
+"RULE BOOK": "规则手册",
+"Q = P·ω, quorum, personal / collective, steps of 0.25": "Q = P·ω、法定人数、个人 / 群体模式、每步 0.25",
+"BENCH + HEAT MAP": "座椅 + 热图",
+"blade angle by p, aimed at people; wind map 0–14 m/s; Rhino layers": "叶片角随 p 变化并朝向人；风速图 0–14 m/s；Rhino 图层",
+"Canopy model": "顶棚模型",
+"(separate project) writes": "（独立项目）写出",
+": its wind and its state at named points of every bench.": "：各座椅命名点处的风与顶棚状态。",
+"wind source = file →": "风源 = 文件 →",
+"← K1 requests": "← K1 请求",
+"Bench": "座椅",
+"reads it as its U": "将其读作 U",
+"; at its limit it writes": "；达到极限时写出",
+": “bench at its limit, please close”.": "：“座椅已到极限，请关闭”。",
+"Data flow": "数据流",
+"Link to the canopy model": "与顶棚模型的连接",
+"The Grasshopper blocks": "Grasshopper 运算块",
+"DEMO SCENARIO": "演示情景",
+"Writes a ready situation (wind, canopy, people, paths) into the sliders and lists, so every value stays visible and editable. The wind goes to manual: the 10 m wind is set so that the gust at 1.1 m is the one of the scenario.":
+  "把预设情况（风、顶棚、人、路径）写入滑块与列表，所有数值都可见、可修改。风源切换为手动：设定 10 m 风速，使 1.1 m 阵风等于情景值。",
+"SITES": "座椅点位",
+"Bench sites from the Rhino layer": "座椅点位来自 Rhino 图层",
+": B1–B3 in the south furniture strip, B4 opposite in the north row. B1 is in front of the ZED camera.": "：B1–B3 位于南侧家具带，B4 在对面北排。B1 位于 ZED 摄像头前方。",
+"Person 1 (demo, age class, pace) plus a table of more people. Ready paths per bench:": "人物 1（演示、年龄类别、步速）以及更多人物的表格。每张座椅的预设路径：",
+". Nobody walks through a bench, a tree bed, a lamp, a terrace or a planter: paths are re-planned around them on a 0.2 m grid (A*); the carriageway can only be crossed. Who sits:":
+  "。没有人会穿过座椅、树池、路灯、外摆或花池：路径在 0.2 m 网格上绕行重新规划（A*）；车行道只能横穿。谁会坐下：",
+"auto": "自动",
+"= an adult or a person with a mobility aid at wind ≤ I2 at the bench, other vulnerable people ≤ I1.": "= 座椅处风级 ≤ I2 时成人或使用助行器的人坐下，其他脆弱人群为 ≤ I1。",
+"PLAY": "播放",
+"Everybody walks by themselves: speed ×1–×10, restart, loop. The agent slider s scrubs time.": "所有人自行行走：速度 ×1–×10，可重新开始、循环。智能体滑块 s 用于拖动时间。",
+"ZED recording or live stream instead of block 1. The camera point and heading are settable when the camera moves. (Not in this page: it needs the camera.)": "用 ZED 录像或实时流代替第 1 块。摄像头移动时可设置其位置与朝向。（本页不含此功能：需要摄像头。）",
+"From the skeleton to features: moving yes/no (0.3 m/s), sitting from hip height, pace bands. Wind cues W and cold cues C give points (table below); a cue counts when it is seen in ≥ 40 % of the frames of the last 2.5 s (one ZED frame every 100–500 ms). People walking abreast form a party.":
+  "从骨架到特征：是否移动（0.3 m/s）、由髋部高度判断坐姿、步速分档。风线索 W 与冷线索 C 计分（见下表）；某线索在最近 2.5 s 内 ≥ 40 % 的帧中出现才计入（ZED 每 100–500 ms 一帧）。并排行走的人构成一组。",
+"Weighs every person (Q = P·ω), checks the quorum, picks personal or collective mode, protects vulnerable people first, holds the blades for people on the windward side (W5) and goes SAFE at I4. With memory: steps of 0.25, one immediate step (T1), keep or undo (C2), no flicker (C5), opening after a pause (C8). K1 asks the canopy for help.":
+  "为每个人加权（Q = P·ω），检查法定人数，选择个人或群体模式，优先保护脆弱人群；对迎风侧的人叶片保持不动（W5）；I4 时进入 SAFE。带记忆：每步 0.25、一次立即动作（T1）、保留或撤回（C2）、不抖动（C5）、停顿后再打开（C8）。K1 向顶棚请求帮助。",
+"BENCH": "座椅",
+"Flat 2.2 m blades on vertical pivots along the S line, turned by p: blade angle 60° − 44° × p (OPEN 60°, HALF 38°, CLOSED 16°). SAFE (gust ≥ I4): every blade turns parallel to the wind, edge-on, so the load is shed from any direction: 90° to the bench line for N or S wind, 0° for wind along the street. 21 blades, 0.198 m apart. Closed blades turn +16° or 180° − 16°, whichever puts the overlaps downwind. Aimed at the protected people at 15°/s. The petal design is in":
+  "2.2 m 平板叶片沿 S 形线绕竖向轴转动，由 p 控制：叶片角 = 60° − 44° × p（开 60°、半开 38°、闭合 16°）。SAFE（阵风 ≥ I4）：所有叶片转到与风向平行，侧边迎风，任何方向都能卸载：南北风时与座椅线成 90°，沿街风时为 0°。共 21 片，间距 0.198 m。闭合时叶片转到 +16° 或 180° − 16°，使搭接朝向下风。以 15°/s 朝向被保护的人。花瓣形叶片设计见",
+"WIND HEAT MAP": "风速热图",
+"Wind around every bench now: blue calm, green, yellow, red strong on a fixed 0–14 m/s scale; arrows give direction and speed.": "当前各座椅周围的风：固定 0–14 m/s 色标，蓝色为静风，绿、黄，红色为强风；箭头表示风向与风速。",
+"Formulas": "公式",
+"Wind at the body": "人体高度风速",
+",  α = 0.35  (or the CFD mean wind at the bench, 1.5 m)": "，α = 0.35（或座椅处 1.5 m 的 CFD 平均风速）",
+"U_gust = U(1.5 m) × G × K_canopy  (× K_site per bench),  G = gust factor 1.6, still to be calibrated": "U_gust = U(1.5 m) × G × K_canopy（各座椅再 × K_site），G = 阵风系数 1.6，待标定",
+"K_canopy = 1 − 0.7 × curtain × (0.4 + 0.6 e),  e = |n · d|  (canopy model)": "K_canopy = 1 − 0.7 × 帘幕 × (0.4 + 0.6 e)，e = |n · d|（顶棚模型）",
+"K_canopy = 1 − ΔU / U₀  (light sails typed in: ΔU = drop at the bench for the sail pose α, β, λ)": "K_canopy = 1 − ΔU / U₀（光帆手动输入：ΔU = 该光帆姿态 α、β、λ 下座椅点的风速降低值）",
+"Shelter behind the porous screen": "多孔屏障后的遮挡",
+"k = k_min + (1 − k_min) × behind / 8H,  k_min = 0.10 + porosity(angle),  H = 2.2 m": "k = k_min + (1 − k_min) × 背后距离 / 8H，k_min = 0.10 + 孔隙率（角度），H = 2.2 m",
+"K_bench = 1 − (1 − k) × |cos(wind, bench normal)| × side_f": "K_bench = 1 − (1 − k) × |cos（风，座椅法线）| × side_f",
+"Lee side only. The wake widens 0.15 m per metre and fades over 0.6 m at its edges. Wind along the street gets no shelter.": "仅限背风侧。尾流每米加宽 0.15 m，边缘 0.6 m 内渐弱。沿街风无遮挡。",
+"Feels-like temperature": "体感温度",
+",  v (km/h) = gust / 1.6 × 3.6": "，v (km/h) = 阵风 / 1.6 × 3.6",
+"Who gets protected": "谁被保护",
+"Q = P · ω,  P = max(W points, C points)": "Q = P · ω，P = max（W 分，C 分）",
+"ω = age × act × dist × side × reach × dwell × cold × expose × pace,  0.15–5": "ω = 年龄 × 活动 × 距离 × 侧 × 可达 × 停留 × 冷 × 暴露 × 步速，0.15–5",
+"term": "项",
+"value": "数值",
+"age (W1)": "年龄（W1）",
+"adult 1.0 · older 60–69 1.3 · child / frail 70+ / stroller 2.0 · mobility aid 2.2": "成人 1.0 · 60–69岁 1.3 · 儿童 / 70岁以上 / 婴儿车 2.0 · 助行器 2.2",
+"act (W2)": "活动（W2）",
+"sit 1.6 · stand 1.2 · walk 1.0": "坐 1.6 · 站 1.2 · 走 1.0",
+"dist (W3)": "距离（W3）",
+"side (W4)": "侧（W4）",
+"0.6 when no blade stands on the wind path to the person (windward side of the screen)": "风到人的路径上没有叶片时为 0.6（屏障迎风侧）",
+"reach (W5)": "可达（W5）",
+"(K_open − K_closed) / 0.313, 0.1–1; < 0.03 → blades hold": "(K_open − K_closed) / 0.313，0.1–1；< 0.03 → 叶片保持",
+"dwell (W6)": "停留（W6）",
+"1 + min(0.3, t / 120 s)": "1 + min(0.3, t / 120 s)",
+"cold (W7)": "冷（W7）",
+"expose (W8)": "暴露（W8）",
+"1.05 + 0.10 cos(facing, upwind)": "1.05 + 0.10 cos（朝向，上风向）",
+"pace (W11)": "步速（W11）",
+"slow < 0.8 m/s 1.25 · normal 1.0 · fast > 1.3 m/s 0.7": "慢 < 0.8 m/s 1.25 · 正常 1.0 · 快 > 1.3 m/s 0.7",
+"S × 0.5 when the wind at the person is already below the comfort limit (sit 2.5, stand 6, walk 8 m/s)": "人所在处风速已低于舒适限值时 S × 0.5（坐 2.5、站 6、走 8 m/s）",
+"s_eff = s + Δs (Δs = 0.5 for child, frail 70+, stroller, mobility aid)": "s_eff = s + Δs（儿童、70岁以上、婴儿车、助行器 Δs = 0.5）",
+"HALF if P ≥ 3 − 2 s_eff · CLOSED if P ≥ 5 − 2 s_eff": "P ≥ 3 − 2 s_eff 时半开 · P ≥ 5 − 2 s_eff 时闭合",
+"Cue points": "线索分值",
+"Cue points · 线索分值": "线索分值",
+"cue": "线索",
+"points": "分值",
+"leans into the wind (> 10°)": "迎风前倾（> 10°）",
+"hand on the head / hood": "手按头部 / 兜帽",
+"hand at the face (from I2)": "手挡在脸前（I2 起）",
+"holds the open jacket closed, one or both hands (any wind)": "单手或双手攥紧敞开的外套（任何风级）",
+"uneven steps": "步伐不稳",
+"back to the wind (from I2)": "背对来风（I2 起）",
+"single file": "排成一列",
+"close to the facade": "贴近建筑立面",
+"arms crossed": "双臂交叉",
+"both hands at the neck": "双手护颈",
+"breath into the hands": "向手里哈气",
+"stamping": "跺脚",
+"one hand at the neck": "单手护颈",
+"shoulders raised": "耸肩",
+"hands in pockets (with another cold cue)": "双手插兜（且有另一冷线索）",
+"hurrying": "赶路",
+"huddle of 3+": "3 人以上挤在一起",
+"seated: hands between the knees *": "坐姿：双手夹在两膝之间 *",
+"seated: rubbing the thighs *": "坐姿：双手搓大腿 *",
+"* our hypothesis. Level: 1–2 points 1, 3–4 points 2, 5 or more 3.": "* 我们的假设。等级：1–2 分为 1 级，3–4 分为 2 级，5 分以上为 3 级。",
+"Wind path (Rule 2)": "风路径（规则 2）",
+"Wind path (Rule 2) · 风路径": "风路径（规则 2）",
+"The blades on the wind path to a person who shows discomfort turn across the wind; the other blades stay at the closure angle of p. With no blade on the wind path the person’s weight is × 0.6 (W4); a person the screen cannot reach does not move the blades (W5, they hold).":
+  "位于不适者风路径上的叶片转向垂直于风；其他叶片保持 p 对应的闭合角。风路径上没有叶片时此人权重 × 0.6（W4）；屏障够不到的人不会使叶片转动（W5，保持）。",
+"Letters": "符号",
+"Letters · 符号": "符号",
+"letter": "符号",
+"meaning": "含义",
+"light sail: tilt along the street, slope across it, share of the cloth unrolled": "光帆：沿街倾转、跨街调坡、膜面展开比例",
+"wind at the bench with the sail / without it = 1 − ΔU / U₀": "有 / 无光帆时座椅点风速之比 = 1 − ΔU / U₀",
+"mean wind at the bench at 1.5 m (CFD); gust factor": "座椅点 1.5 m 平均风速（CFD）；阵风系数",
+"wind points, cold points of a person; P = max(W, C)": "个人的风分、冷分；P = max(W, C)",
+"personal weight (age class 1.0–2.2 × activity × distance × wind path × reach × dwell × cold × exposure × pace, kept within 0.15–5); priority Q = P · ω":
+  "个人权重（年龄类别 1.0–2.2 × 活动 × 距离 × 风路径 × 可达 × 停留 × 冷 × 暴露 × 步速，限定在 0.15–5）；优先级 Q = P · ω",
+"sensitivity of the bench; + 0.5 for vulnerable people (fewer points needed)": "座椅灵敏度；脆弱人群 + 0.5（所需分数更少）",
+"closure 0–1, blade angle 60° − 44° × p": "闭合度 0–1，叶片角 60° − 44° × p",
+"share of the people in the 4 m zone who show discomfort (≥ 3 parties)": "4 m 范围内表现出不适的人所占比例（≥ 3 组）",
+"wind levels of the gust at 1.5 m": "1.5 m 阵风的风级",
+"request from the bench to the light sails": "座椅向光帆发出的请求",
+"Wind levels": "风级",
+"level": "等级",
+"gust at 1.5 m": "1.5 m 阵风",
+"meaning for the bench": "对座椅的含义",
+"calm": "静风",
+"light: comfortable for sitting a while": "轻：适合坐一会儿",
+"noticeable: adults still sit (auto)": "明显：成人仍会坐下（自动）",
+"strong: walking disturbed, nobody sits by default": "强：行走受影响，默认无人坐下",
+"very strong: bench goes SAFE (H0)": "很强：座椅进入 SAFE（H0）",
+"dangerous: SAFE, stay away": "危险：SAFE，远离",
+"Wind W": "风 W", "Cold C": "冷 C", "Wind W · 风": "风 W", "Cold C · 冷": "冷 C",
+// ---------- Behaviour: our notes and cards
+"Notes for the bench": "座椅备注",
+"Notes for the bench · 座椅备注": "座椅备注",
+"The bench reads wind and cold only.": "座椅只读取风与冷。",
+"Heat, sun and rain cues stay on this page for the street devices; the bench rule book adds wind (W) and cold (C) points.": "热、晒、雨的线索留在本页供街道装置使用；座椅规则手册只累加风（W）与冷（C）分。",
+"Holding an open jacket closed is a wind cue": "攥紧敞开的外套是风的线索",
+", one hand or both: W+1 at any wind level. In hard frost people zip up, so it is not a cold cue.": "，单手或双手：任何风级都 W+1。严寒时人们会拉上拉链，所以它不是冷的线索。",
+"New seated cold cues": "新增坐姿冷线索",
+"(our hypothesis): hands pressed between the knees C+1, rubbing the thighs C+1.": "（我们的假设）：双手夹在两膝之间 C+1，双手搓大腿 C+1。",
+"A cue counts when it is seen in ≥ 40 % of the frames": "线索在 ≥ 40 % 的帧中出现才计入",
+"of the last 2.5 s (one ZED frame every 100–500 ms). Points add up per axis: W = Σ, C = Σ, P = max(W, C).": "（最近 2.5 s，ZED 每 100–500 ms 一帧）。分数按维度累加：W = Σ，C = Σ，P = max(W, C)。",
+"Activity is simple and measurable.": "活动判断简单且可测。",
+"Moving yes/no (0.3 m/s) plus hip height gives walk / stand / sit. Slow walkers (< 0.8 m/s) are protected first.": "是否移动（0.3 m/s）加上髋部高度得出走 / 站 / 坐。慢行者（< 0.8 m/s）优先保护。",
+"Personal traits, next step:": "个人特征，下一步：",
+"child from stature (< 1.40 m) and 70+ from a steady lean with a slow walk, both from the ZED skeleton; stroller and mobility aid from ZED object detection. In the Street micro tab the class is a setting of each person.":
+  "由身高（< 1.40 m）判断儿童，由持续前倾加慢行判断 70 岁以上，均来自 ZED 骨架；婴儿车与助行器来自 ZED 物体检测。在微观页中，类别是每个人的设置项。",
+"Posture is not wind.": "体态不等于风。",
+"A lean that stays the same through a turn is posture: the lean points are dropped (A5).": "转身时前倾不变说明是体态：不计前倾分（A5）。",
+"Sitting down is not “it got worse”.": "坐下不代表“变糟了”。",
+"Keep / undo compares the same people doing the same thing only (C2).": "保留 / 撤回只比较做同一件事的同一批人（C2）。",
+"shared list": "共享列表",
+"34-keypoint body figure": "34 关键点人体",
+"face landmarks on a head silhouette": "头部轮廓上的面部关键点",
+"Add a new pose": "添加新姿态",
+"change the figure in the Posture card": "在“姿态”卡中修改人形",
+"e.g. both hands pull the hood down": "例如：双手拉低兜帽",
+"e.g. both wrists at the neck, elbows close to the chest, for 2 s or more": "例如：双腕在颈部，肘部贴近胸前，持续 2 s 以上",
+"link, paper, or place and date of the observation": "链接、文献，或观察地点与日期",
+"Add to the Street micro tab": "添加到微观页",
+"where / when it was seen": "在哪里 / 何时看到",
+"remove": "删除",
+"leave": "离开", "walk": "步行", "sit": "坐", "stand": "站", "approach": "走近", "sitting": "坐着", "wait": "等待", "end": "结束", "done": "结束", "gone": "已离开",
+"lee": "背风侧", "windward": "迎风侧"
+  };
+  const NUM = '(-?[\\d.]+)';
+  const R = [
+    [/^person (\d+)$/, (m, a) => '人物 ' + a],
+    [/^wind from (-?\d+)°$/, (m, a) => '来风 ' + a + '°'],
+    [/^U_gust ([\d.]+) m\/s (I\d)$/, (m) => m],
+    [/^section through (B\d+)$/, (m, a) => a + ' 剖面'],
+    [/^lee: (south|north)$/, (m, a) => '背风侧：' + (a === 'south' ? '南' : '北')],
+    [/^porosity (\d+) %$/, (m, a) => '孔隙率 ' + a + ' %'],
+    [/^remove (B\d+|person \d+)$/, (m, a) => '删除 ' + a.replace('person', '人物')],
+    [/^(demo|class|speed|start|offset|path|remove) of person (\d+)$/, (m, a, n) => '人物 ' + n + ' 的' + ({demo: '演示', class: '类别', speed: '速度', start: '开始', offset: '偏移', path: '路径', remove: '删除'})[a]],
+    [/^target p (.+)$/, (m, a) => '目标 p ' + a],
+    [new RegExp('^' + NUM + ' °C at the bench \\(' + NUM + ' m/s\\)$'), (m, a, b) => '座椅处 ' + a + ' °C（' + b + ' m/s）'],
+    [new RegExp('^' + NUM + ' °C lee seat, open blades$'), (m, a) => '背风座位 ' + a + ' °C（叶片打开）'],
+    [/^(\d+) of (\d+)$/, (m, a, b) => a + ' / ' + b],
+    [/^(\d+) part(y|ies)$/, (m, a) => a + ' 组'],
+    [/^p ([\d.]+) -> ([\d.]+) \((.+)\)$/, (m, a, b, w) => 'p ' + a + ' → ' + b + '（' + (({'C1 round step': 'C1 一轮一步', 'T1 immediate tier': 'T1 立即一步'})[w] || w.replace(/^C2 undo: D rose (\d+) %$/, 'C2 撤回：D 上升 $1 %').replace(/^C8 opening probe \(wait (\d+) s\)$/, 'C8 试探打开（等待 $1 s）')) + '）'],
+    [/^C8: opening waits \((\d+) of (\d+) s\)$/, (m, a, b) => 'C8：等待打开（' + a + ' / ' + b + ' s）'],
+    [/^C2 keep: D fell (\d+) %$/, (m, a) => 'C2 保留：D 下降 ' + a + ' %'],
+    [/^C5: direction reversed twice -> freeze (\d+) s$/, (m, a) => 'C5：方向两次反转 → 冻结 ' + a + ' s'],
+    [/^C8: probe failed, wait doubles \(k = (\d+)\)$/, (m, a) => 'C8：试探失败，等待时间加倍（k = ' + a + '）'],
+    [/^leave safe -> protect, p ([\d.]+)$/, (m, a) => '退出安全状态 → 保护，p ' + a],
+    [/^(south|north) row, (in front of ZED|east|west|opposite|placed)$/, (m, a, b) => (a === 'south' ? '南排' : '北排') + '，' + ({'in front of ZED': 'ZED 前方', east: '东侧', west: '西侧', opposite: '对面', placed: '放置'})[b]],
+    [/^x ([\d.]+), y ([\d.]+)$/, (m) => m],
+    [/^U_gust at 1\.5 m ([\d.]+) m\/s = (I\d)$/, (m, a, b) => '1.5 m 阵风 U_gust ' + a + ' m/s = ' + b],
+    [/^from (-?[\d.]+)°$/, (m, a) => '来风 ' + a + '°'],
+    [/^K_canopy ([\d.]+) \(blades face the wind (\d+) %\) → gust at (B\d+) ([\d.]+) m\/s$/, (m, a, b, c, d) => 'K_canopy ' + a + '（叶片迎风 ' + b + ' %）→ ' + c + ' 阵风 ' + d + ' m/s'],
+    [/^K_canopy ([\d.]+) \(light sails, typed in\) → gust at (B\d+) ([\d.]+) m\/s K_canopy ([\d.]+)$/, (m, a, c, d) => 'K_canopy ' + a + '（光帆，手动输入）→ ' + c + ' 阵风 ' + d + ' m/s'],
+    [/^K_canopy ([\d.]+) \(light sails, typed in\) → gust at (B\d+) ([\d.]+) m\/s$/, (m, a, c, d) => 'K_canopy ' + a + '（光帆，手动输入）→ ' + c + ' 阵风 ' + d + ' m/s'],
+    [/^winner: party ([\d+]+)$/, (m, a) => '优先：第 ' + a + ' 组'],
+    [/^(\d+) blades$/, (m, a) => a + ' 片叶片'],
+    [/^pitch ([\d.]+) m$/, (m, a) => '间距 ' + a + ' m'],
+    [/^([\d.]+)°\/s ×(\d+) here$/, (m, a, b) => a + '°/s，此处 ×' + b],
+    [/^figure now: (front|side) view$/, (m, a) => '当前人形：' + (a === 'side' ? '侧视' : '正视')],
+    [/^nobody in the zone: hold \(C6, X5\)$/, () => '范围内无人：保持（C6、X5）'],
+    [/^quorum (\d+) < (\d+) and nobody seated: no bench rule acts \(C7\/G4\)$/, (m, a, b) => '法定人数 ' + a + ' < ' + b + ' 且无人就座：不执行座椅规则（C7/G4）'],
+    [/^collective: (\d+) parties, D_w ([\d.]+) -> (\d+) step\(s\)$/, (m, a, b, c) => '群体：' + a + ' 组，D_w ' + b + ' → ' + c + ' 步'],
+    [/^I(\d): safe state, weights ignored \(H0\/K5\)$/, (m, a) => 'I' + a + '：安全状态，不计权重（H0/K5）'],
+    [/^camera down: wind sensor alone, I(\d)$/, (m, a) => '摄像头离线：仅风速仪，I' + a]
+  ];
+  // a segment that needs no translation: numbers, units, codes, state names
+  const SYM = s => !/[a-z]{3,}/.test(s.replace(/\b(m\/s|R_aim|K_canopy|K_site|K_open|K_closed|s_eff|U_gust|deg|min|clo|bpm|lux|Ta|ZED|CFD|GH)\b/g, ''));
+  function one(s) {
+    if (Object.prototype.hasOwnProperty.call(X, s)) return X[s];
+    for (const r of R) { const m = s.match(r[0]); if (m) return r[1].apply(null, m); }
+    return null;
+  }
+  return function (s) {
+    if (!s || !/[A-Za-z]{2,}/.test(s)) return s;
+    const m = s.match(/^(\s*)([\s\S]*?)(\s*)$/), body = m[2].replace(/\u00a0/g, ' ');
+    if (!body) return s;
+    let t = one(body);
+    if (t == null && body.indexOf(' · ') > 0) {                   // "a · b · c": every segment must be known or symbolic
+      const seg = body.split(' · '), out = [];
+      for (const g of seg) { const u = one(g.trim()); if (u != null) out.push(u); else if (SYM(g)) out.push(g); else { out.length = 0; break; } }
+      if (out.length === seg.length) t = out.join(' · ');
+    }
+    if (t == null && /^— /.test(body)) { const u = one(body.slice(2)); if (u != null) t = '— ' + u; }
+    if (t == null && / — /.test(body)) {                          // "H8 — the winner is ..."
+      const i = body.indexOf(' — '), u = one(body.slice(i + 3));
+      if (u != null && SYM(body.slice(0, i))) t = body.slice(0, i) + ' — ' + u;
+    }
+    return t == null ? s : m[1] + t + m[3];
+  };
+})();
+
+</script>
+<script>
 // lang.js - one EN / 中文 switch for the whole site.
 // Behaviour tab: drives its own language buttons (its own switch is hidden). Street macro and Light sail tabs (written in Chinese by
 // the team mate): text nodes and title / aria-label / placeholder are translated with the phrase list below, longest phrase first, so
@@ -7779,10 +8295,12 @@ const file=location.protocol!=='http:',connected=bridge.connected&&bridge.doc,re
   }
   window.dxBi = bi;
   const TEAM = n => { const p = n.parentElement; return !!(p && p.closest('#tab-macro,#tab-sail')); };
+  // our tabs in 中文: the English-only lines get their Chinese from zh_ours.js (whole lines or " · " segments only)
+  const OURS = (s, el) => (EN || !window.DX_ENZH || (el && el.closest && el.closest('.l-en,sub,sup,code,pre,.mono-file'))) ? s : window.DX_ENZH(s);
   function doText(n) {
     const cur = n.nodeValue;
     if (DONE.get(n) !== cur) ORIG.set(n, cur);        // the script wrote new text: that is the new original
-    const zh = ORIG.get(n), want = TEAM(n) ? (EN ? tr(zh) : zh) : bi(zh);
+    const zh = ORIG.get(n), want = TEAM(n) ? (EN ? tr(zh) : OURS(zh, n.parentElement)) : OURS(bi(zh), n.parentElement);
     if (want !== cur) n.nodeValue = want;
     DONE.set(n, want);
   }
@@ -7791,7 +8309,7 @@ const file=location.protocol!=='http:',connected=bridge.connected&&bridge.doc,re
       if (!el.hasAttribute(a)) continue;
       const cur = el.getAttribute(a), k = 'dxzh' + a.replace('-', '');
       if (el.dataset[k + 'Done'] !== cur) el.dataset[k] = cur;
-      const team = !!el.closest('#tab-macro,#tab-sail'), want = team ? (EN ? tr(el.dataset[k]) : el.dataset[k]) : bi(el.dataset[k]);
+      const team = !!el.closest('#tab-macro,#tab-sail'), want = team ? (EN ? tr(el.dataset[k]) : el.dataset[k]) : OURS(bi(el.dataset[k]), el);
       if (want !== cur) el.setAttribute(a, want);
       el.dataset[k + 'Done'] = want;
     }
@@ -7806,7 +8324,7 @@ const file=location.protocol!=='http:',connected=bridge.connected&&bridge.doc,re
       let n;
       while ((n = w.nextNode())) {
         if (n.nodeType === 1) { if (/^(SCRIPT|STYLE)$/.test(n.tagName)) continue; doAttrs(n); }
-        else if (n.nodeValue && (HAN.test(n.nodeValue) || ORIG.has(n)) && !(n.parentElement && /^(SCRIPT|STYLE)$/.test(n.parentElement.tagName))) doText(n);
+        else if (n.nodeValue && (HAN.test(n.nodeValue) || ORIG.has(n) || (!EN && LAT.test(n.nodeValue))) && !(n.parentElement && /^(SCRIPT|STYLE)$/.test(n.parentElement.tagName))) doText(n);
       }
     } finally { busy = false; }
   }
@@ -7823,7 +8341,7 @@ const file=location.protocol!=='http:',connected=bridge.connected&&bridge.doc,re
   // words drawn on the canvases of these tabs
   const P = CanvasRenderingContext2D.prototype, fill = P.fillText, stroke = P.strokeText;
   const inTabs = c => c && c.closest && (c.closest('#tab-macro') || c.closest('#tab-sail'));
-  const cvt = (c, t) => typeof t !== 'string' || !HAN.test(t) ? t : inTabs(c) ? (EN ? tr(t) : t) : bi(t);
+  const cvt = (c, t) => typeof t !== 'string' ? t : inTabs(c) ? (EN || !HAN.test(t) ? (HAN.test(t) ? tr(t) : t) : t) : OURS(HAN.test(t) ? bi(t) : t, c);
   P.fillText = function (t, ...a) { return fill.call(this, cvt(this.canvas, t), ...a); };
   P.strokeText = function (t, ...a) { return stroke.call(this, cvt(this.canvas, t), ...a); };
 
@@ -7992,10 +8510,10 @@ const file=location.protocol!=='http:',connected=bridge.connected&&bridge.doc,re
       '<li><a href="#' + x[0] + '"><span class="n">0' + (i + 1) + '</span><span class="t">' + L(x[1]) + '</span><span class="d">' + L(x[2]) + '</span></a></li>').join('');
     // the two authors side by side, same size, each with the part of the project: macro system, micro system (tab order)
     root.querySelector('.home-credits').innerHTML = e
-      ? '<div class="au"><span class="k">Authors</span><div class="v2"><span>Haojun Shi <i>史浩均</i><em>Macro system</em></span><span>Tatiana Chesnokova<em>Micro system</em></span></div></div>' +
+      ? '<div class="au"><span class="k">Authors</span><div class="v2"><em>Macro system</em><span>Haojun Shi <i>史浩均</i></span><em>Micro system</em><span>Tatiana Chesnokova</span></div></div>' +
         '<div><span class="k">Supervisor</span><div class="v">Chao Yan <i>闫超</i></div></div>' +
         '<div><span class="k">School</span><div class="v">Tongji University <i>同济大学</i></div></div>'
-      : '<div class="au"><span class="k">作者</span><div class="v2"><span>史浩均<em>宏观系统</em></span><span>Tatiana Chesnokova<em>微观系统</em></span></div></div>' +
+      : '<div class="au"><span class="k">作者</span><div class="v2"><em>宏观系统</em><span>史浩均</span><em>微观系统</em><span>Tatiana Chesnokova</span></div></div>' +
         '<div><span class="k">指导老师</span><div class="v">闫超</div></div>' +
         '<div><span class="k">学校</span><div class="v">同济大学</div></div>';
     cap();
